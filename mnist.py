@@ -20,11 +20,10 @@ model = kr.Sequential([
 	kr.layers.Conv2D(16, 5, activation='relu', input_shape=(28, 28, 1)),
 	kr.layers.Conv2D(32, 5, activation='relu'),
 	kr.layers.MaxPooling2D(pool_size=(2, 2)),
-	kr.layers.Conv2D(64, 5, activation='relu'),
-	kr.layers.Conv2D(128, 5, activation='relu'),
-	kr.layers.MaxPooling2D(pool_size=(2, 2)),
 	kr.layers.Flatten(),
 	kr.layers.Dense(128, activation='relu'),
+	kr.layers.Dense(128, activation='relu'),
+	kr.layers.Dropout(0.2),
 	kr.layers.Dense(10, activation='softmax')
 ])
 model.compile(optimizer='adam', loss='sparse_categorical_crossentropy',
