@@ -7,12 +7,13 @@ import matplotlib.pyplot as plt
 from PIL import Image
 
 def preprocess(image):
-	image = image.reshape(1, 28, 28, 1)
-	return 1 - image/255.0
+	image = image.resize((28, 28), Image.BICUBIC)
+	pix = np.fromiter(image.getdata(), 'float32')
+	pix = pix.reshape(1, 28, 28, 1)
+	return 1 - pix/255.0
 
 im = Image.open('img.png')
-pix = np.fromiter(im.getdata(), 'float32')
-net_input = preprocess(pix)
+net_input = preprocess(im)
 
 net = kr.models.load_model('mnist-model.h5')
 pred = net.predict(net_input)[0]
