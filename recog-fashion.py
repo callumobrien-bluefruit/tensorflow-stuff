@@ -14,7 +14,7 @@ def preprocess(image):
 	return 1 - image/255.0
 
 im = Image.open('img.png')
-pix = np.fromiter(im.getdata(), 'float32')
+pix = np.fromiter(im.getdata(), float)
 net_input = preprocess(pix)
 
 net = kr.models.load_model('fashion-mnist-model.h5')
